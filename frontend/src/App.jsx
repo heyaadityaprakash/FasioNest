@@ -13,11 +13,13 @@ import PlaceOrder from './pages/PlaceOrder';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
 
   return (
     <div className='px-8 '>
+      <ToastContainer/>
       <Navbar/>
       <SearchBar/>
       <Routes>

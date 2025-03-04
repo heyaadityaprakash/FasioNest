@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { icons } from '../assets/assets';
+import RelatedProd from '../components/RelatedProd';
+
 
 function Product() {
     const {productId} = useParams();
-    const {products, currency} = useContext(ShopContext);
+    const {products, currency,addToCart} = useContext(ShopContext);
     const [productDetails, setProductDetails] = useState(false);
     const [image, setImage] = useState('');
     const [size, setSize] = useState('');
@@ -82,7 +84,7 @@ function Product() {
                         </div>
                     </div>
 
-                    <button className="bg-gray-800 text-gray-100 px-4 py-2 rounded-sm active:bg-gray-600">
+                    <button onClick={()=>addToCart(productDetails._id,size)} className="bg-gray-800 text-gray-100 px-4 py-2 rounded-sm active:bg-gray-600">
                         Add to Bag
                     </button>
 
@@ -115,7 +117,7 @@ function Product() {
 
             {/* related prods */}
 
-            
+            <RelatedProd category={productDetails.category} subCateogry={productDetails.subCateogry}/>
         </div>
     ) : (
         <div>Loading...</div>

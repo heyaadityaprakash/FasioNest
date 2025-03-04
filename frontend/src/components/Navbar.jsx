@@ -3,7 +3,7 @@ import { icons, logo } from "../assets/assets.js";
 import { NavLink, Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext.jsx";
 function Navbar() {
-  const {setShowSearch}=useContext(ShopContext)
+  const {setShowSearch,getCartCount}=useContext(ShopContext)
   const [visible, setVisible] = useState(false);
 
   return (
@@ -51,7 +51,7 @@ function Navbar() {
         <Link to="/cart" className="relative">
           <img src={icons.cart} className="w-5" alt="" />
           <p className="bg-neutral-900 text-center text-gray-100 rounded-full aspect-square text-xs absolute bottom-[-5px] right-[-5px] w-4">
-            4
+            {getCartCount()}
           </p>
         </Link>
 
