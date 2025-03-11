@@ -1,7 +1,12 @@
-import React from 'react';
+import React,{useState,useContext} from 'react';
 import Title from '../components/Title';
 import CartTotal from '../components/CartTotal'
+import { ShopContext } from '../context/ShopContext';
+import { icons } from '../assets/assets';
 function PlaceOrder() {
+
+    const [method,setMethod]=useState('cod')
+    const {navigate}=useContext(ShopContext)
     return ( 
         <div className='flex flex-col sm:flex-row justify-between gap-4 pt-4 min-h-[80vh]'>
             {/* left */}
@@ -10,7 +15,7 @@ function PlaceOrder() {
                     <Title text1={"Order"} text2={"Summary"}/>
                 </div>
 
-                <div className='flex gap-2'>
+                <div className='flex gap-2 mt-4'>
                     <input className="border border-gray-400 rounded-sm py-2 px-4 w-full" type="text" placeholder="First Name" />
                     <input className="border border-gray-400 rounded-sm py-2 px-4 w-full" type="text" placeholder="last Name" />
                 </div>
@@ -42,13 +47,26 @@ function PlaceOrder() {
 
                 <div className='mt-10'>
                     <Title text1={"payment"} text2={"method"}/>
-                    <div className=''>
-                        <div className=''>
-                            <p className=''>{}</p>
-
+                    <div className='flex gap-2'>
+                        <div onClick={()=>setMethod('stripe')} className='flex gap-2 item-center  cursor-pointer px-2 py-2'>
+                            <p  className={`min-w-3 h-3 border rounded-full ${method==='stripe'?'bg-green-400':''}`}></p>
+                            <img src={icons.stripe} className='w-10' alt="" srcset="" />
+                        </div>
+                        <div onClick={()=>setMethod('razorpay')} className='flex gap-2 item-center cursor-pointer px-2 py-2'>
+                            <p  className={`min-w-3 h-3 border rounded-full ${method==='razorpay'?'bg-green-400':''}`}></p>
+                            <img src={icons.razorpay} className='w-16' alt="" srcset="" />
+                        </div>
+                        <div onClick={()=>setMethod('cod')} className='flex item-center gap-2 cursor-pointer px-2 py-2'>
+                            <p className={`min-w-3 h-3 border rounded-full ${method==='cod'?'bg-green-400':''}`}></p>
+                            <p className='text-sm font-bold '>COD</p>
                         </div>
 
                     </div>
+                </div>
+
+
+                <div className='mt-4'>
+                    <button onClick={()=>navigate('/orders')} className='bg-black text-gray-100 px-10 py-2 w-full'>Place Order</button>
                 </div>
             </div>
         </div>

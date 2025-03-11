@@ -37,7 +37,7 @@ function Navbar() {
       <div className="flex items-center gap-6 ">
         <img onClick={()=>setShowSearch(true)} src={icons.search} className="w-5 cursor-pointer" alt="" />
         <div className="group relative">
-          <img src={icons.profile} className="w-5 cursor-pointer" alt="" />
+          <Link to={'/login'}> <img src={icons.profile} className="w-5 cursor-pointer" alt="" /></Link>
           {/* menu */}
           <div className="group-hover:block hidden absolute right-0 pt-4 bg-gray-200 rounded-md">
             <div className="flex flex-col gap-2 w-32 text-center text-gray-700 py-2 px-2  ">
